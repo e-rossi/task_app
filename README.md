@@ -20,6 +20,7 @@ user
     email: "string | required | unique",
     password: "string | required | minlength = 7",
     age: "number | optional",
+    avatar: "buffer | image"
     -- internal fields --
     tokens: "array of session tokens",
     createdAt: "datetime",
@@ -175,6 +176,44 @@ response => user object
     updatedAt
 }
 ```
+
+*Add profile pic*
+
+POST `/users/me/avatar`
+
+request header => session token
+```
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+request body => form data with file type field
+```
+avatar: file (png, jpg or jpeg)
+```
+
+response => 200
+
+*Delete profile pic*
+
+DELETE `/users/me/avatar`
+
+request header => session token
+```
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+response => 200
+
+*Fetch an user's profile*
+
+GET `/users/:id/avatar`
+
+request header => session token
+```
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+response => profile of user referenced in the "id" parameter
 
 ---------------
 
